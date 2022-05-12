@@ -33,12 +33,12 @@ const data = {
   add: ["styled-components", "firebase"],
 };
 
-const calcCash = (own) => {
+const calcCash = (own, ...args) => {
   own = own || 0;
-  const everyCash = Array.prototype.slice.call(arguments);
+  const everyCash = Array.prototype.slice.call(...args);
   let total = own;
-  for (let i = 0; i < everyCash[1].length; i++) {
-    total += +everyCash[1][i];
+  for (let i = 0; i < everyCash.length; i++) {
+    total += +everyCash[i];
   }
   return total;
 };
@@ -49,19 +49,10 @@ const makeBusiness = (director, teacher, allModule, gang, course) => {
   teacher = teacher || "Максим";
   const sumTech = data.react.concat(data.add, "и другие");
   console.log(
-    'Стартуем новый курс: "' +
-      course +
-      '". Владелец: ' +
-      director +
-      ", преподаватель: " +
-      teacher +
-      ". Всего уроков: " +
-      allModule +
-      ". \nКоманда Академии: " +
-      gang
+    `Стартуем новый курс: "${course}". Владелец: ${director}, преподаватель: ${teacher}. Всего уроков: ${allModule}. \nКоманда Академии: ${gang}`
   );
   console.log(
-    "Первое что изучим будет " + data.react[0] + ". Он очень похож на HTML!"
+    `Первое что изучим будет ${data.react[0]}. Он очень похож на HTML!`
   );
   console.log("Технологии которые мы изучим: ");
   console.log.apply(null, sumTech);
